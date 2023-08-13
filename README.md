@@ -1,13 +1,13 @@
 # Tech Course Projects
 
 - [Tech Course Projects](#tech-course-projects)
-  - [📚 Descriptions](#-descriptions)
+  - [📚 Description](#-description)
     - [Project # - Name](#project----name)
       - [Description](#description)
   - [🎹 Projects installation](#-projects-installation)
   - [⚙️ Available commands](#️-available-commands)
 
-## 📚 Descriptions
+## 📚 Description
 
 ### Project # - Name
 
