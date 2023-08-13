@@ -1,4 +1,4 @@
-# ReactJS Course Projects
+# React Course Projects
 
 - [ReactJS Course Projects](#reactjs-course-projects)
   - [📚 Descriptions](#-descriptions)
