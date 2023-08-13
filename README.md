@@ -1,6 +1,6 @@
-# Tech Course Projects
+# ReactJS Course Projects
 
-- [Tech Course Projects](#tech-course-projects)
+- [ReactJS Course Projects](#reactjs-course-projects)
   - [📚 Descriptions](#-descriptions)
     - [Project #1 - 03-counter-app-vite](#project-1---03-counter-app-vite)
     - [Project #2 - 04-giff-app](#project-2---04-giff-app)
@@ -47,6 +47,7 @@ The project is a web application that combines two features: a simple counter an
 ### Project #7 - 10-calendar-app
 
 **Description:**
+The project is a web application that allows users to create and manage events in an interactive calendar. Users will be able to add events with details such as title, date, time, and description, and will be able to view, modify, and delete existing events. React will be used to build the user interface and Jest will be used to write automatic tests that ensure the correct operation of event handling.
 
 ## 🎹 Projects installation
 
