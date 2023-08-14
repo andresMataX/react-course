@@ -19,11 +19,11 @@ export const LoginPage = ({}: Props) => {
 
   return (
     <>
-      <div className="container mt-3">
+      <div className='container mt-3'>
         <h1>Login</h1>
         <hr />
 
-        <button className="btn btn-outline-primary" onClick={onLogin}>
+        <button className='btn btn-outline-primary' onClick={onLogin}>
           Login
         </button>
       </div>

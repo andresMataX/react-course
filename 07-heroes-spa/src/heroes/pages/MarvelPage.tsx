@@ -8,7 +8,7 @@ export const MarvelPage = ({}: Props) => {
       <h1>Marvel Comics</h1>
       <hr />
 
-      <HeroList publisher="Marvel Comics" />
+      <HeroList publisher='Marvel Comics' />
     </>
   )
 }

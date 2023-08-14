@@ -32,26 +32,26 @@ export const SearchPage = ({}: Props) => {
       <h1>Search</h1>
       <hr />
 
-      <div className="row">
-        <div className="col-5">
+      <div className='row'>
+        <div className='col-5'>
           <h4>Searching</h4>
           <hr />
 
           <form onSubmit={(e) => onSearchSubmit(e)}>
             <input
-              type="text"
-              className="form-control"
-              placeholder="Search a hero"
-              name="searchText"
-              autoComplete="off"
+              type='text'
+              className='form-control'
+              placeholder='Search a hero'
+              name='searchText'
+              autoComplete='off'
               value={searchText}
               onChange={({ target }) => onChange(target.value, 'searchText')}
             />
-            <button className="btn btn-outline-warning mt-3">Search</button>
+            <button className='btn btn-outline-warning mt-3'>Search</button>
           </form>
         </div>
 
-        <div className="col-7">
+        <div className='col-7'>
           <h4>Results</h4>
           <hr />
 
@@ -66,14 +66,14 @@ export const SearchPage = ({}: Props) => {
           )} */}
 
           <div
-            className="alert alert-primary animate__animated animate__fadeIn"
+            className='alert alert-primary animate__animated animate__fadeIn'
             style={{ display: showSearch ? '' : 'none' }}
           >
             Search a Hero
           </div>
 
           <div
-            className="alert alert-danger animate__animated animate__fadeIn"
+            className='alert alert-danger animate__animated animate__fadeIn'
             style={{ display: showError ? '' : 'none' }}
           >
             No Hero with <b>{q}</b>
