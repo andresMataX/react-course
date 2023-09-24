@@ -1,14 +1,12 @@
-import { useMemo, useState } from 'react'
 import { addHours, differenceInSeconds } from 'date-fns'
 import es from 'date-fns/locale/es'
-import Modal from 'react-modal'
+import { useMemo, useState } from 'react'
 import DatePicker, { registerLocale } from 'react-datepicker'
+import Modal from 'react-modal'
 import Swal from 'sweetalert2'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import 'sweetalert2/dist/sweetalert2.min.css'
-
-interface Props {}
 
 registerLocale('es', es)
 
@@ -25,7 +23,7 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-export const CalendarModal = ({}: Props) => {
+export const CalendarModal = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formValues, setFormValues] = useState({

@@ -1,11 +1,9 @@
+import { addHours } from 'date-fns'
+import { useState } from 'react'
 import { Calendar, EventPropGetter, View } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { CalendarEventBox, CalendarModal, Navbar } from '../components'
-import { addHours } from 'date-fns'
 import { getMessagesES, localizer } from '../../helpers'
-import { useState } from 'react'
-
-interface Props {}
+import { CalendarEventBox, CalendarModal, Navbar } from '../components'
 
 export interface EventCalendar {
   title: string
@@ -33,7 +31,7 @@ const events: EventCalendar[] = [
   },
 ]
 
-export const CalendarPage = ({}: Props) => {
+export const CalendarPage = () => {
   const [lastView, setLastView] = useState<View>(
     (localStorage.getItem('lastView') as View) || 'week'
   )

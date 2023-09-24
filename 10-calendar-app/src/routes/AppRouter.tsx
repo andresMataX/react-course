@@ -1,10 +1,8 @@
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { Login } from '../auth/'
 import { CalendarPage } from '../calendar'
 
-interface Props {}
-
-export const AppRouter = ({}: Props) => {
+export const AppRouter = () => {
   const authStatus = 'authenticated'
 
   return (
