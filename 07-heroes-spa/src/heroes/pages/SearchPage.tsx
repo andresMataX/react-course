@@ -22,8 +22,6 @@ export const SearchPage = ({}: Props) => {
   const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // if (searchText.trim().length < 2) return
-
     navigate(`?q=${searchText}`)
   }
 
@@ -37,7 +35,7 @@ export const SearchPage = ({}: Props) => {
           <h4>Searching</h4>
           <hr />
 
-          <form onSubmit={(e) => onSearchSubmit(e)}>
+          <form onSubmit={(e) => onSearchSubmit(e)} aria-label="form">
             <input
               type="text"
               className="form-control"
@@ -55,16 +53,6 @@ export const SearchPage = ({}: Props) => {
           <h4>Results</h4>
           <hr />
 
-          {/* {q === undefined ? (
-            <div className="alert alert-primary">Search a Hero</div>
-          ) : (
-            heroes.length === 0 && (
-              <div className="alert alert-danger">
-                No Hero with <b>{q}</b>
-              </div>
-            )
-          )} */}
-
           <div
             className="alert alert-primary animate__animated animate__fadeIn"
             style={{ display: showSearch ? '' : 'none' }}
@@ -75,6 +63,7 @@ export const SearchPage = ({}: Props) => {
           <div
             className="alert alert-danger animate__animated animate__fadeIn"
             style={{ display: showError ? '' : 'none' }}
+            aria-label="alert-danger"
           >
             No Hero with <b>{q}</b>
           </div>
