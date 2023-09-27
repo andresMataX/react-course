@@ -1,6 +1,4 @@
-import { describe, expect, test } from '@jest/globals'
-
-describe('Pruebas en <DemoComponent />', () => {
+describe('Pruebas en Demo', () => {
   test('Esta prueba no debe de fallar', () => {
     // 1. Inicializar
     const message1 = 'Hola Mundo'
