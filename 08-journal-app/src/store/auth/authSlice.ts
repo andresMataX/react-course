@@ -1,22 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { initialState } from '../../../test/fixtures/authFixture'
 
 export interface AuthState {
-  status?: 'checking' | 'not-authenticated' | 'authenticated'
-  email?: string | null
-  displayName?: string | null
-  photoURL?: string | null
-  errorMessage?: string | null
-  uid?: string | null
-}
-
-const initialState: AuthState = {
-  status: 'checking',
-  displayName: null,
-  email: null,
-  errorMessage: null,
-  photoURL: null,
-  uid: null,
+  status: 'checking' | 'not-authenticated' | 'authenticated'
+  email: string | null
+  displayName: string | null
+  photoURL: string | null
+  errorMessage: string | null
+  uid: string | null
 }
 
 export const authSlice = createSlice({
