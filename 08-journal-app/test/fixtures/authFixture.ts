@@ -1,4 +1,4 @@
-import { AuthState } from '../../src/store/auth/authSlice';
+import { AuthState } from '../../src/store/auth/authSlice'
 
 export const initialState: AuthState = {
   status: 'checking',
@@ -7,7 +7,7 @@ export const initialState: AuthState = {
   errorMessage: null,
   photoURL: null,
   uid: null,
-};
+}
 
 export const authenticatedState: AuthState = {
   status: 'authenticated',
@@ -16,7 +16,7 @@ export const authenticatedState: AuthState = {
   errorMessage: null,
   photoURL: 'https://example.com/photo.jpg',
   uid: '1234567890',
-};
+}
 
 export const notAuthenticatedState: AuthState = {
   status: 'not-authenticated',
@@ -25,11 +25,13 @@ export const notAuthenticatedState: AuthState = {
   errorMessage: null,
   photoURL: null,
   uid: null,
-};
+}
 
-export const demoUser = {
+export const demoUser: AuthState = {
   uid: '1234567890',
   displayName: 'Test User',
   email: 'test@gmail.com',
   photoURL: 'https://example.com/photo.jpg',
-};
+  errorMessage: null,
+  status: 'not-authenticated',
+}
