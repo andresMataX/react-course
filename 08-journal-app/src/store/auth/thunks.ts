@@ -1,13 +1,13 @@
-import { AppDispatch } from '../store'
-import { checkingCredentials, login, logout } from './authSlice'
+import { FormData } from '../../auth/pages'
 import {
   loginWithEmailPassword,
+  logoutFirebase,
   registerUserWithEmailPassword,
   signInWithGoogle,
 } from '../../firebase/providers'
-import { FormData } from '../../auth/pages'
-import { logoutFirebase } from '../../firebase/providers'
 import { clearNotesLogout } from '../journal'
+import { AppDispatch } from '../store'
+import { checkingCredentials, login, logout } from './authSlice'
 
 export const checkingAuthentication = () => {
   return async (dispatch: AppDispatch) => {
@@ -25,10 +25,12 @@ export const startGoogleSignIn = () => {
 
     dispatch(
       login({
-        displayName: result.displayName,
-        email: result.email,
-        photoURL: result.photoURL,
-        uid: result.uid,
+        displayName: result.displayName || null,
+        email: result.email || null,
+        photoURL: result.photoURL || null,
+        uid: result.uid || null,
+        errorMessage: null,
+        status: 'not-authenticated',
       })
     )
   }
@@ -51,7 +53,16 @@ export const startCreatingUserWithEmailPassword = ({
 
     if (!ok) return dispatch(logout(errorMessage))
 
-    dispatch(login({ displayName, email, photoURL, uid, errorMessage }))
+    dispatch(
+      login({
+        displayName,
+        email,
+        photoURL: photoURL || null,
+        uid: uid || null,
+        errorMessage,
+        status: 'not-authenticated',
+      })
+    )
   }
 }
 
@@ -65,10 +76,12 @@ export const startLoginWithEmailPassword = ({ email = '', password = '' }) => {
 
     dispatch(
       login({
-        uid: result.uid,
-        displayName: result.displayName,
-        photoURL: result.photoURL,
+        uid: result.uid || null,
+        displayName: result.displayName || null,
+        photoURL: result.photoURL || null,
         email,
+        errorMessage: null,
+        status: 'not-authenticated',
       })
     )
   }
