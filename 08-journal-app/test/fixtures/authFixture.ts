@@ -22,7 +22,7 @@ export const notAuthenticatedState: AuthState = {
   status: 'not-authenticated',
   displayName: null,
   email: null,
-  errorMessage: null,
+  errorMessage: 'No autenticado',
   photoURL: null,
   uid: null,
 }
