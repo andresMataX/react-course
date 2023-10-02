@@ -6,7 +6,6 @@ import {
 } from '../../../src/store/auth/authSlice'
 import {
   authenticatedState,
-  demoUser,
   initialState,
   notAuthenticatedState,
 } from '../../fixtures/authFixture'
@@ -23,13 +22,13 @@ describe('Pruebas en el authSlice', () => {
   })
 
   test('debe de realizar la autenticación', () => {
-    const state = authSlice.reducer(initialState, login(demoUser))
+    const state = authSlice.reducer(initialState, login(authenticatedState))
 
     expect(state).toEqual({
-      uid: demoUser.uid,
-      displayName: demoUser.displayName,
-      email: demoUser.email,
-      photoURL: demoUser.photoURL,
+      uid: authenticatedState.uid,
+      displayName: authenticatedState.displayName,
+      email: authenticatedState.email,
+      photoURL: authenticatedState.photoURL,
       errorMessage: null,
       status: 'authenticated',
     })

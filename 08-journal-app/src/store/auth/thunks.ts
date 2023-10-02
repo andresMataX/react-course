@@ -25,12 +25,12 @@ export const startGoogleSignIn = () => {
 
     dispatch(
       login({
-        displayName: result.displayName || null,
-        email: result.email || null,
-        photoURL: result.photoURL || null,
-        uid: result.uid || null,
+        displayName: result.displayName!,
+        email: result.email!,
+        photoURL: result.photoURL!,
+        uid: result.uid!,
         errorMessage: null,
-        status: 'not-authenticated',
+        status: 'authenticated',
       })
     )
   }
@@ -51,16 +51,16 @@ export const startCreatingUserWithEmailPassword = ({
         password,
       })
 
-    if (!ok) return dispatch(logout(errorMessage))
+    if (!ok) return dispatch(logout())
 
     dispatch(
       login({
         displayName,
         email,
-        photoURL: photoURL || null,
-        uid: uid || null,
-        errorMessage,
-        status: 'not-authenticated',
+        photoURL: photoURL!,
+        uid: uid!,
+        errorMessage: errorMessage,
+        status: 'authenticated',
       })
     )
   }
@@ -72,13 +72,13 @@ export const startLoginWithEmailPassword = ({ email = '', password = '' }) => {
 
     const result = await loginWithEmailPassword({ email, password })
 
-    if (!result.ok) return dispatch(logout(result.errorMessage))
+    if (!result.ok) return dispatch(logout())
 
     dispatch(
       login({
-        uid: result.uid || null,
-        displayName: result.displayName || null,
-        photoURL: result.photoURL || null,
+        uid: result.uid!,
+        displayName: result.displayName!,
+        photoURL: result.photoURL!,
         email,
         errorMessage: null,
         status: 'not-authenticated',
