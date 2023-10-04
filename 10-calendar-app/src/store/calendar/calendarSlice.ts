@@ -19,7 +19,7 @@ const event: EventCalendar = {
   title: 'Cumpleaños',
   notes: 'Comprar pastel',
   start: new Date(),
-  end: addHours(new Date(), 2),
+  end: addHours(new Date(), 4),
   bgColor: '#fafafa',
   user: {
     _id: '1234',
@@ -44,7 +44,11 @@ export const calendarSlice = createSlice({
     onSetActiveEvent: (state, { payload }: PayloadAction<EventCalendar>) => {
       state.activeEvent = payload
     },
+    onAddNewEvent: (state, { payload }: PayloadAction<EventCalendar>) => {
+      state.events.push(payload)
+      state.activeEvent = null
+    },
   },
 })
 
-export const { onSetActiveEvent } = calendarSlice.actions
+export const { onSetActiveEvent, onAddNewEvent } = calendarSlice.actions

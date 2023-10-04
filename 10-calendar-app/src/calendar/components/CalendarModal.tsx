@@ -7,6 +7,7 @@ import Modal from 'react-modal'
 import Swal from 'sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import { useCalendarStore, useUiStore } from '../../hooks'
+import { EventCalendar } from '../../store/calendar'
 
 registerLocale('es', es)
 
@@ -25,14 +26,19 @@ Modal.setAppElement('#root')
 
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUiStore()
-  const { activeEvent } = useCalendarStore()
+  const { activeEvent, startSavingEvent } = useCalendarStore()
 
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<EventCalendar>({
     title: 'Andrés',
     notes: 'lorem',
     start: new Date(),
     end: addHours(new Date(), 2),
+    bgColor: '#347FC7',
+    user: {
+      _id: '',
+      name: '',
+    },
   })
 
   const titleClass = useMemo(() => {
@@ -61,7 +67,7 @@ export const CalendarModal = () => {
     })
   }
 
-  const onSubmit = (event: any) => {
+  const onSubmit = async (event: React.SyntheticEvent<HTMLElement, Event>) => {
     event.preventDefault()
     setFormSubmitted(true)
 
@@ -74,7 +80,9 @@ export const CalendarModal = () => {
 
     if (formValues.title.length <= 0) return
 
-    console.log(formValues)
+    await startSavingEvent(formValues)
+    closeDateModal()
+    setFormSubmitted(false)
   }
 
   return (
@@ -110,7 +118,6 @@ export const CalendarModal = () => {
             timeCaption="Hora"
             locale="es"
             showTimeSelect
-            minDate={formValues.start}
             selected={formValues.end}
             className="form-control"
             onChange={(event) => onDateChanged(event, 'end')}

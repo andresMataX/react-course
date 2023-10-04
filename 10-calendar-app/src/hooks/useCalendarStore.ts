@@ -1,5 +1,9 @@
 import { useAppDispatch, useAppSelector } from '../store'
-import { EventCalendar, onSetActiveEvent } from '../store/calendar'
+import {
+  EventCalendar,
+  onAddNewEvent,
+  onSetActiveEvent,
+} from '../store/calendar'
 
 export const useCalendarStore = () => {
   const dispatch = useAppDispatch()
@@ -10,9 +14,16 @@ export const useCalendarStore = () => {
     dispatch(onSetActiveEvent(calendarEvent))
   }
 
+  const startSavingEvent = async (calendarEvent: EventCalendar) => {
+    if (!calendarEvent._id) {
+      dispatch(onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }))
+    }
+  }
+
   return {
     events,
-    setActiveEvent,
     activeEvent,
+    setActiveEvent,
+    startSavingEvent,
   }
 }
