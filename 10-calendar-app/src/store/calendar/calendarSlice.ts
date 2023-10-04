@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { addHours } from 'date-fns'
 
 export interface EventCalendar {
-  _id: number
+  _id?: number
   title: string
   notes: string
   start: Date
