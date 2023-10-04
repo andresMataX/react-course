@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { uiSlice } from './ui'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { calendarSlice } from './calendar'
+import { uiSlice } from './ui'
 
 export const store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
+    calendar: calendarSlice.reducer,
   },
 })
 

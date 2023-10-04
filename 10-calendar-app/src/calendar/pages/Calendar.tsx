@@ -1,38 +1,13 @@
-import { addHours } from 'date-fns'
 import { useState } from 'react'
 import { Calendar, EventPropGetter, View } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { getMessagesES, localizer } from '../../helpers'
-import { useUiStore } from '../../hooks'
+import { useCalendarStore, useUiStore } from '../../hooks'
+import { EventCalendar } from '../../store/calendar'
 import { CalendarEventBox, CalendarModal, Navbar } from '../components'
 
-export interface EventCalendar {
-  title: string
-  notes: string
-  start: Date
-  end: Date
-  bgColor: string
-  user: {
-    _id: string
-    name: string
-  }
-}
-
-const events: EventCalendar[] = [
-  {
-    title: 'Cumpleaños',
-    notes: 'Comprar pastel',
-    start: new Date(),
-    end: addHours(new Date(), 2),
-    bgColor: '#fafafa',
-    user: {
-      _id: '1234',
-      name: 'Fernando',
-    },
-  },
-]
-
 export const CalendarPage = () => {
+  const { events, setActiveEvent } = useCalendarStore()
   const { openDateModal } = useUiStore()
 
   const [lastView, setLastView] = useState<View>(
@@ -55,7 +30,7 @@ export const CalendarPage = () => {
   const onDoubleClick: (
     event: EventCalendar,
     e: React.SyntheticEvent<HTMLElement, Event>
-  ) => void = (event) => {
+  ) => void = () => {
     openDateModal()
   }
 
@@ -63,7 +38,7 @@ export const CalendarPage = () => {
     event: EventCalendar,
     e: React.SyntheticEvent<HTMLElement, Event>
   ) => void = (event) => {
-    console.log({ select: event })
+    setActiveEvent(event)
   }
 
   const onViewChanged: (view: View) => void = (view) => {
