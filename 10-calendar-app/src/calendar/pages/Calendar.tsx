@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Calendar, EventPropGetter, View } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { getMessagesES, localizer } from '../../helpers'
+import { useUiStore } from '../../hooks'
 import { CalendarEventBox, CalendarModal, Navbar } from '../components'
 
 export interface EventCalendar {
@@ -32,6 +33,8 @@ const events: EventCalendar[] = [
 ]
 
 export const CalendarPage = () => {
+  const { openDateModal } = useUiStore()
+
   const [lastView, setLastView] = useState<View>(
     (localStorage.getItem('lastView') as View) || 'week'
   )
@@ -53,7 +56,7 @@ export const CalendarPage = () => {
     event: EventCalendar,
     e: React.SyntheticEvent<HTMLElement, Event>
   ) => void = (event) => {
-    console.log({ double: event })
+    openDateModal()
   }
 
   const onSelect: (

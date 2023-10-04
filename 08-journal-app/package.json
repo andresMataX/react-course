@@ -10,7 +10,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "test": "jest -u",
-    "test-dev": "jest --watchAll"
+    "test-dev": "jest --watchAll --maxWorkers=25%"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
