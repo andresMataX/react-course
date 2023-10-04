@@ -2,7 +2,9 @@ import { useAppDispatch, useAppSelector } from '../store'
 import {
   EventCalendar,
   onAddNewEvent,
+  onDeleteEvent,
   onSetActiveEvent,
+  onUpdateEvent,
 } from '../store/calendar'
 
 export const useCalendarStore = () => {
@@ -15,15 +17,21 @@ export const useCalendarStore = () => {
   }
 
   const startSavingEvent = async (calendarEvent: EventCalendar) => {
-    if (!calendarEvent._id) {
-      dispatch(onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }))
-    }
+    calendarEvent._id
+      ? dispatch(onUpdateEvent({ ...calendarEvent }))
+      : dispatch(onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }))
+  }
+
+  const startDeletingEvent = () => {
+    dispatch(onDeleteEvent())
   }
 
   return {
     events,
     activeEvent,
+    hasEventSelected: !!activeEvent,
     setActiveEvent,
     startSavingEvent,
+    startDeletingEvent,
   }
 }

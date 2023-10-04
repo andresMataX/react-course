@@ -8,6 +8,7 @@ import {
   CalendarEventBox,
   CalendarModal,
   FabAddNew,
+  FabDelete,
   Navbar,
 } from '../components'
 
@@ -76,6 +77,7 @@ export const CalendarPage = () => {
       <CalendarModal />
 
       <FabAddNew />
+      <FabDelete />
     </>
   )
 }
