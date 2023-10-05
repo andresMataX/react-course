@@ -1,9 +1,11 @@
+import { parseISO } from 'date-fns'
 import { calendarAPI } from '../api'
 import { useAppDispatch, useAppSelector } from '../store'
 import {
   EventCalendar,
   onAddNewEvent,
   onDeleteEvent,
+  onLoadEvents,
   onSetActiveEvent,
   onUpdateEvent,
 } from '../store/calendar'
@@ -38,6 +40,19 @@ export const useCalendarStore = () => {
     dispatch(onDeleteEvent())
   }
 
+  const startLoadingEvents = async () => {
+    const { data } = await calendarAPI.get('/events')
+
+    const events = data.eventos.map((event: any) => {
+      event.start = parseISO(event.start)
+      event.end = parseISO(event.end)
+
+      return event
+    })
+
+    dispatch(onLoadEvents(events))
+  }
+
   return {
     events,
     activeEvent,
@@ -45,5 +60,6 @@ export const useCalendarStore = () => {
     setActiveEvent,
     startSavingEvent,
     startDeletingEvent,
+    startLoadingEvents,
   }
 }

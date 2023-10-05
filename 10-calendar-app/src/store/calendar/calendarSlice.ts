@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { addHours } from 'date-fns'
 
 export interface EventCalendar {
   id?: number
@@ -14,27 +13,16 @@ export interface EventCalendar {
   }
 }
 
-const event: EventCalendar = {
-  id: new Date().getTime(),
-  title: 'Cumpleaños',
-  notes: 'Comprar pastel',
-  start: new Date(),
-  end: addHours(new Date(), 4),
-  bgColor: '#fafafa',
-  user: {
-    _id: '1234',
-    name: 'Fernando',
-  },
-}
-
 interface CalendarState {
   events: EventCalendar[]
   activeEvent: EventCalendar | null
+  isLoading: boolean
 }
 
 const initialState: CalendarState = {
-  events: [event],
+  events: [],
   activeEvent: null,
+  isLoading: true,
 }
 
 export const calendarSlice = createSlice({
@@ -61,8 +49,17 @@ export const calendarSlice = createSlice({
         state.activeEvent = null
       }
     },
+    onLoadEvents: (state, { payload }: PayloadAction<EventCalendar[]>) => {
+      state.events = payload
+      state.isLoading = false
+    },
   },
 })
 
-export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } =
-  calendarSlice.actions
+export const {
+  onSetActiveEvent,
+  onAddNewEvent,
+  onUpdateEvent,
+  onDeleteEvent,
+  onLoadEvents,
+} = calendarSlice.actions
