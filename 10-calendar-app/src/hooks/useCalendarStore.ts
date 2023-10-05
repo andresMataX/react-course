@@ -22,7 +22,17 @@ export const useCalendarStore = () => {
 
   const startSavingEvent = async (calendarEvent: EventCalendar) => {
     if (calendarEvent.id) {
-      dispatch(onUpdateEvent({ ...calendarEvent }))
+      await calendarAPI.put(`/events/${calendarEvent.id}`, calendarEvent)
+
+      dispatch(
+        onUpdateEvent({
+          ...calendarEvent,
+          user: {
+            _id: user?.uid || '',
+            name: user?.name || '',
+          },
+        })
+      )
     } else {
       const { data } = await calendarAPI.post('/events', calendarEvent)
 
@@ -36,7 +46,9 @@ export const useCalendarStore = () => {
     }
   }
 
-  const startDeletingEvent = () => {
+  const startDeletingEvent = async () => {
+    await calendarAPI.delete(`/events/${activeEvent?.id}`)
+
     dispatch(onDeleteEvent())
   }
 
