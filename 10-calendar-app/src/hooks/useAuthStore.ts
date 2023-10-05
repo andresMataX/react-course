@@ -1,6 +1,7 @@
 import { calendarAPI } from '../api'
 import { useAppDispatch, useAppSelector } from '../store'
 import { onChecking, onLogin, onLogout } from '../store/auth'
+import { onLogoutCalendar } from '../store/calendar'
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useAppSelector((state) => state.auth)
@@ -41,6 +42,7 @@ export const useAuthStore = () => {
 
   const startLogout = () => {
     localStorage.clear()
+    dispatch(onLogoutCalendar())
     dispatch(onLogout())
   }
 

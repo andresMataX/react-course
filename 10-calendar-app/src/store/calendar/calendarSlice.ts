@@ -53,6 +53,11 @@ export const calendarSlice = createSlice({
       state.events = payload
       state.isLoading = false
     },
+    onLogoutCalendar: (state) => {
+      state.events = []
+      state.activeEvent = null
+      state.isLoading = true
+    },
   },
 })
 
@@ -62,4 +67,5 @@ export const {
   onUpdateEvent,
   onDeleteEvent,
   onLoadEvents,
+  onLogoutCalendar,
 } = calendarSlice.actions
