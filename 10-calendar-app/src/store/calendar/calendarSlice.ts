@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { addHours } from 'date-fns'
 
 export interface EventCalendar {
-  _id?: number
+  id?: number
   title: string
   notes: string
   start: Date
@@ -15,7 +15,7 @@ export interface EventCalendar {
 }
 
 const event: EventCalendar = {
-  _id: new Date().getTime(),
+  id: new Date().getTime(),
   title: 'Cumpleaños',
   notes: 'Comprar pastel',
   start: new Date(),
@@ -50,13 +50,13 @@ export const calendarSlice = createSlice({
     },
     onUpdateEvent: (state, { payload }: PayloadAction<EventCalendar>) => {
       state.events = state.events.map((event) =>
-        event._id === payload._id ? payload : event
+        event.id === payload.id ? payload : event
       )
     },
     onDeleteEvent: (state) => {
       if (state.activeEvent) {
         state.events = state.events.filter(
-          (event) => event._id !== state.activeEvent?._id
+          (event) => event.id !== state.activeEvent?.id
         )
         state.activeEvent = null
       }

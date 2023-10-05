@@ -1,3 +1,4 @@
+import { calendarAPI } from '../api'
 import { useAppDispatch, useAppSelector } from '../store'
 import {
   EventCalendar,
@@ -11,15 +12,26 @@ export const useCalendarStore = () => {
   const dispatch = useAppDispatch()
 
   const { events, activeEvent } = useAppSelector((state) => state.calendar)
+  const { user } = useAppSelector((state) => state.auth)
 
   const setActiveEvent = (calendarEvent: EventCalendar) => {
     dispatch(onSetActiveEvent(calendarEvent))
   }
 
   const startSavingEvent = async (calendarEvent: EventCalendar) => {
-    calendarEvent._id
-      ? dispatch(onUpdateEvent({ ...calendarEvent }))
-      : dispatch(onAddNewEvent({ ...calendarEvent, _id: new Date().getTime() }))
+    if (calendarEvent.id) {
+      dispatch(onUpdateEvent({ ...calendarEvent }))
+    } else {
+      const { data } = await calendarAPI.post('/events', calendarEvent)
+
+      dispatch(
+        onAddNewEvent({
+          ...calendarEvent,
+          id: data.evento.id,
+          user: { _id: user?.uid || '', name: user?.name || '' },
+        })
+      )
+    }
   }
 
   const startDeletingEvent = () => {
