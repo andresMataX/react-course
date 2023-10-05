@@ -3,12 +3,17 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 export interface AuthState {
   status: 'checking' | 'authenticated' | 'not-authenticated'
   errorMessage?: string
-  user: null | string
+  user: null | User
 }
 
 const initialState: AuthState = {
   status: 'checking',
   user: null,
+}
+
+interface User {
+  name: string
+  uid: string
 }
 
 export const authSlice = createSlice({
@@ -20,12 +25,17 @@ export const authSlice = createSlice({
       state.user = null
       state.errorMessage = undefined
     },
-    onLogin: (state, { payload }: PayloadAction<string>) => {
+    onLogin: (state, { payload }: PayloadAction<User>) => {
       state.status = 'authenticated'
       state.user = payload
       state.errorMessage = undefined
     },
+    onLogout: (state, { payload }: PayloadAction<string | undefined>) => {
+      state.status = 'not-authenticated'
+      state.user = null
+      state.errorMessage = payload
+    },
   },
 })
 
-export const { onChecking, onLogin } = authSlice.actions
+export const { onChecking, onLogin, onLogout } = authSlice.actions
