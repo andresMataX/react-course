@@ -13,7 +13,7 @@ export interface EventCalendar {
   }
 }
 
-interface CalendarState {
+export interface CalendarState {
   events: EventCalendar[]
   activeEvent: EventCalendar | null
   isLoading: boolean
