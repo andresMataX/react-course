@@ -80,6 +80,7 @@ describe('Pruebas en calendarSlice', () => {
     )
 
     expect(state.activeEvent).toBeNull()
+    expect(state.events).not.toContain(events[0])
   })
 
   test('onLoadEvents debe de establecer los eventos', () => {
