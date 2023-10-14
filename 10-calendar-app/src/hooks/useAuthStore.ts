@@ -1,13 +1,18 @@
 import { calendarAPI } from '../api'
 import { useAppDispatch, useAppSelector } from '../store'
-import { onChecking, onLogin, onLogout } from '../store/auth'
+import {
+  onChecking,
+  onClearErrorMessage,
+  onLogin,
+  onLogout,
+} from '../store/auth'
 import { onLogoutCalendar } from '../store/calendar'
 
 export const useAuthStore = () => {
   const { status, user, errorMessage } = useAppSelector((state) => state.auth)
   const dispatch = useAppDispatch()
 
-  const startLogin = async (email = '', password = '') => {
+  const startLogin = async (email: string, password: string) => {
     dispatch(onChecking())
 
     try {
@@ -19,6 +24,9 @@ export const useAuthStore = () => {
       dispatch(onLogin({ name: data.name, uid: data.uid }))
     } catch (error) {
       dispatch(onLogout('Las credenciales no son válidas'))
+      setTimeout(() => {
+        dispatch(onClearErrorMessage())
+      }, 10)
     }
   }
 

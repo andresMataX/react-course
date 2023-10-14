@@ -1,13 +1,16 @@
 import { authSlice, onLogin, onLogout } from '../../../src/store/auth/authSlice'
-import { authenticatedState, initialState } from '../../fixtures/authStates'
+import { authInitialState, authenticatedState } from '../../fixtures/authStates'
 import { testUserCredentials } from '../../fixtures/testUser'
 describe('Pruebas en authSlice', () => {
   test('debe de regresar el estado inicial', () => {
-    expect(authSlice.getInitialState()).toEqual(initialState)
+    expect(authSlice.getInitialState()).toEqual(authInitialState)
   })
 
   test('debe de realizar el login', () => {
-    const state = authSlice.reducer(initialState, onLogin(testUserCredentials))
+    const state = authSlice.reducer(
+      authInitialState,
+      onLogin(testUserCredentials)
+    )
 
     expect(state).toEqual({
       status: 'authenticated',

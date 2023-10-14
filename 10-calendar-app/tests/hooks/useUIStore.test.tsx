@@ -57,7 +57,7 @@ describe('Pruebas en useUIStore', () => {
 
   test('onCloseDateModal debe de colocar false en el isDateModalOpen', () => {
     const mockStore = getMockStore({
-      isDateModalOpen: false,
+      isDateModalOpen: true,
     })
 
     const { result } = renderHook(() => useUiStore(), {

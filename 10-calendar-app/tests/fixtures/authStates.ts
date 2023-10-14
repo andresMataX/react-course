@@ -1,6 +1,6 @@
 import { AuthState } from '../../src/store/auth/authSlice'
 
-export const initialState: AuthState = {
+export const authInitialState: AuthState = {
   status: 'checking',
   user: null,
 }
